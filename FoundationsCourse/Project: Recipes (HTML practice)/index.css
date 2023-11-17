@@ -1,12 +1,22 @@
 body {
     background-color: antiquewhite;
+    display:flex;
+    align-items: center;
+    flex-flow: column wrap;
+
   }
   h1 {
     color: green;
+
   }
   h2 {
     color: green;
+
   }
   h3 {
     color: royalblue;
+
+  }
+  h1 p {
+    color:blueviolet;
   }
