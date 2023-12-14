@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+
+      function playRound(callback) {
+
+        var selection = prompt("What is your selection: rock, paper, scissors?");
+
+        selection = selection.toLowerCase()
+
+        function getComputerChoice() {
+          const words = ["rock", "paper", "scissors"]
+          return words[Math.floor(Math.random()*3)]
+        }
+
+        console.log("Your selection " + selection + "!");
+
+
+
+        function question(getComputerChoice,selection) {
+
+            if (selection === getComputerChoice) {
+              console.log("Draw")
+              callback('0');
+              }  else if (
+              (selection === "rock" && getComputerChoice === "scissors")||
+              (selection === "scissors" && getComputerChoice === "paper")||
+              (selection === "paper" && getComputerChoice === "rock")
+              ) {
+              console.log("You are win!");
+              callback('user');
+            } else {
+              console.log("You are lost.")
+              callback('computer');
+            }
+        }
+
+
+
+        if (
+          (selection === "rock") ||
+          (selection === "paper") ||
+          (selection === "scissors")
+          ) {
+          question(getComputerChoice(), selection)
+        } else {
+          console.log("A non-existent answer option was selected")
+        }
+      }
+
+
+
+
+      function playGame() {
+        let userWins = 0;
+        let computerWins = 0;
+
+        function playNextRound(){
+          if (userWins + computerWins < 5) {
+            playRound((winner) => {
+              if (winner === 'user') {
+                userWins++;
+                console.log(winner)
+              } else if (winner === 'computer') {
+                computerWins++;
+                console.log(winner)
+              } else if (winner === '0') {
+                console.log(winner)
+              }
+              playNextRound();
+            })
+          } else {
+            console.log(`User ${userWins}, Computer ${computerWins}`)
+          }}
+        function result(){
+
+          playNextRound()
+
+            if (userWins > computerWins) {
+            console.log("You are win!!!!")
+          } else if (userWins < computerWins) {
+            console.log("Computer is win 2.")
+          } else {
+            console.log("Draw 3")
+          }
+        }
+        result();
+      }
+    playGame()
+
+
+
+
+      console.log("Game over!")
+    </script>
+</body>
+</html>
